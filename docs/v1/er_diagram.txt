@@ -1,0 +1,45 @@
+erDiagram
+    USERS ||--o{ ORDERS : places
+    ORDERS ||--o{ ORDER_EVENTS : has
+    ORDERS ||--o{ PAYMENTS : has
+    ORDERS ||--o{ INVENTORY_RESERVATIONS : has
+
+    USERS {
+        uuid id PK
+        string email
+        string name
+        datetime created_at
+    }
+
+    ORDERS {
+        uuid id PK
+        uuid user_id FK
+        string status  "CREATED | PROCESSING | CONFIRMED | FAILED | CANCELLED"
+        int total_amount
+        datetime created_at
+        datetime updated_at
+    }
+
+    ORDER_EVENTS {
+        uuid id PK
+        uuid order_id FK
+        string event_type
+        datetime created_at
+    }
+
+    PAYMENTS {
+        uuid id PK
+        uuid order_id FK
+        string status  "PENDING | SUCCESS | FAILED | REFUNDED"
+        int amount
+        string provider
+        datetime created_at
+    }
+
+    INVENTORY_RESERVATIONS {
+        uuid id PK
+        uuid order_id FK
+        string status  "RESERVED | RELEASED"
+        datetime created_at
+    }
+
