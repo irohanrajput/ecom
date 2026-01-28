@@ -1,0 +1,10 @@
+server setup
+database setup
+migrations setup
+
+writing models
+
+
+phase3 dev for external world : api, routes etc
+
+pydantic schema; api contract
